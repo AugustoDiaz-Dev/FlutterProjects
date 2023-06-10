@@ -8,8 +8,15 @@ void main() {
   ));
 }
 
-class IdCard extends StatelessWidget {
+class IdCard extends StatefulWidget {
   const IdCard({super.key});
+
+  @override
+  State<IdCard> createState() => _IdCardState();
+}
+
+class _IdCardState extends State<IdCard> {
+  int counter = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +29,14 @@ class IdCard extends StatelessWidget {
         elevation: 0,
         // It takes out the drop shadow
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              counter += 1;
+            });
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Colors.grey[800]),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
         child: Column(
@@ -54,13 +69,14 @@ class IdCard extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Text('PROFILE',
+              Text('Likes',
                   style: TextStyle(color: Colors.grey, letterSpacing: 2)),
+              Icon(Icons.heart_broken, color: Colors.grey[400]),
               SizedBox(
                 height: 10,
               ),
               Text(
-                'Developer',
+                '$counter',
                 style: TextStyle(
                   color: Colors.lightGreenAccent[400],
                   letterSpacing: 2,
