@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'quote.dart';
+import 'quote_card.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: QuoteList(),
-  ));
-}
+void main() => runApp(MaterialApp(home: QuoteList()));
 
 class QuoteList extends StatefulWidget {
-  const QuoteList({Key? key}) : super(key: key);
-
   @override
   _QuoteListState createState() => _QuoteListState();
 }
@@ -30,16 +25,14 @@ class _QuoteListState extends State<QuoteList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Shani Quote App'),
+        title: Text('Awesome Quotes'),
         centerTitle: true,
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        children: quotes
-            .map((quote) => Text('${quote.text} - ${quote.author}'))
-            .toList(),
+        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
       ),
     );
   }
