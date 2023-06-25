@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ui_project/utilities/actions.dart';
+import 'package:ui_project/utilities/tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,16 +20,20 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+              icon: Icon(Icons.book),
+              label: 'Articles',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'Business',
+              icon: Icon(Icons.home, color: Colors.grey),
+              label: 'My Words',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.school),
+              icon: Icon(Icons.calendar_month, color: Colors.grey),
               label: 'School',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.school, color: Colors.grey),
+              label: 'Cards',
             ),
           ],
           selectedItemColor: Colors.blue[800],
@@ -162,35 +167,64 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 SizedBox(
-                  height: 8,
+                  height: 24,
                 ),
                 Expanded(
                   child: ClipRRect(
                     borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(25)),
+                        BorderRadius.vertical(top: Radius.circular(24)),
                     child: Container(
-                        color: Colors.white,
+                        color: Colors.grey[50],
                         child: Center(
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(24, 12, 24, 12),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('Exercises',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20,
-                                        )),
-                                    Icon(Icons.more_horiz),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
+                          child: Column(children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(24, 12, 24, 12),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                // ignore: prefer_const_literals_to_create_immutables
+                                children: [
+                                  Text('Exercises',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      )),
+                                  Icon(Icons.more_horiz),
+                                ],
+                              ),
+
+                              // LISTVIEW
+                            ),
+                            SizedBox(height: 20),
+                            Expanded(
+                              child: ListView(
+                                // ignore: prefer_const_literals_to_create_immutables
+                                children: [
+                                  Tiles(
+                                      icon: Icons.voice_chat,
+                                      name: 'Speaking Skills',
+                                      number: 8,
+                                      color: Colors.pink),
+                                  Tiles(
+                                      icon: Icons.text_fields,
+                                      name: 'Writing Skills',
+                                      number: 16,
+                                      color: Colors.yellow),
+                                  Tiles(
+                                      icon: Icons.book,
+                                      name: 'Reading Skills',
+                                      number: 12,
+                                      color: Colors.orange),
+                                  Tiles(
+                                      icon: Icons.headphones,
+                                      name: 'Listening Skills',
+                                      number: 20,
+                                      color: Colors.green),
+                                ],
+                              ),
+                            )
+                          ]),
                         )),
                   ),
                 ),
